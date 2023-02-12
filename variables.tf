@@ -9,7 +9,3 @@ variable "app_service_plan" {
     sku_name = "F1"
   }
 }
-
-# App Service
-variable "app_service" {}
-
