@@ -1,15 +1,15 @@
 variable env {}
-
-variable asp_count {}
-
 variable rg_loc {
     default = "northcentralus"
 }
 
 # App Service Plan
-variable app_service_plan_os {}
-variable app_service_plan_sku_name {
-    default = "F1"
+variable app_service_plan {
+    default = {
+        sku_name = "F1"
+    }
 }
 
+# App Service
 variable app_service {}
+

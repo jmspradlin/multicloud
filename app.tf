@@ -1,16 +1,17 @@
 module "azure_app_service" {
     source = "./azure"
-    count = var.asp_count
+    for_each = var.app_service_plan
 
     rg  = {
-        # results in concatenation like "dev-win-asp-rg01"
-        name = "${var.env}-${substr(app_service_plan_os,0,3)}-asp-rg${format("%02d", count.index + 1)}" 
+        # results in concatenation like "dev-win-asp01-rg"
+        name = "${var.env}-${substr(each.value.os,0,3)}-${each.key}-rg" 
         location = var.rg_loc
     }
     app_service_plan = {
-        os          = var.app_service_plan_os
-        name        = "${var.env}-${substr(app_service_plan_os,0,3)}-asp${format("%02d", count.index + 1)}" 
-        sku_name    = var.app_service_plan_sku_name
+        os          = each.value.os
+        # results in concatenation like "dev-win-asp01"
+        name        = "${var.env}-${substr(each.value.os,0,3)}-${each.key}" 
+        sku_name    = each.value.sku_name
     }
     app_service = var.app_service
 }
