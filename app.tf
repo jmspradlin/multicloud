@@ -1,28 +1,23 @@
 resource "azurerm_resource_group" "rg01" {
-  name     = var.rg.name
-  location = var.rg.loc
+  name     = "${var.env}-${var.rg.name}-01"
+  location = var.rg.location
 }
 
-module "azure_app_service_plan" {
-  source   = "./azure/asp"
-  for_each = var.app_service_plan
-
-  env = var.env
-  rg = azurerm_resource_group.rg01
-  app_service_plan = {
-    os = each.value.os
-    # results in concatenation like "dev-win-asp01"
-    name     = each.key
-    sku_name = each.value.sku_name
-  }
+resource "azurerm_service_plan" "asp" {
+  name                = "${var.env}-${var.app_service_plan.name}"
+  sku_name            = var.app_service_plan.sku_name
+  resource_group_name = var.rg.name
+  location            = var.rg.location
+  os_type             = var.app_service_plan.os
 }
 
-module "azure_app_service" {
-  source   = "./azure/asp"
-  for_each = var.app_service_plan.app_service
+resource "azurerm_linux_web_app" "linux" {
+  for_each = var.app_service_linux
 
-  env = var.env
-  rg = azurerm_resource_group.rg01
-  app_service_plan = module.app_service_plan
-  app_service = var.app_service_plan.app_service
+  name                = "${var.env}-${each.key}"
+  resource_group_name = var.rg.name
+  location            = var.rg.location
+  service_plan_id     = azurerm_service_plan.asp.id
+
+  site_config {}
 }
