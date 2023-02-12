@@ -1,14 +1,7 @@
 variable "env" {}
-variable "rg" {
-  default = {
-    location = "northcentralus"
-  }
-}
+variable "rg" {}
 
 # App Service Plan
 variable "app_service_plan" {}
 
-variable "app_service_plan_sku" {
-  default = "F1"
-}
-variable "app_service" {}
+variable "app_service_linux" {}
