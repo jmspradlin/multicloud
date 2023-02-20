@@ -75,14 +75,14 @@ aws_private_rules = {
     type        = "ingress"
     from_port   = 80
     to_port     = 80
-    protocol    = "-1"
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress443 = {
     type        = "ingress"
     from_port   = 443
     to_port     = 443
-    protocol    = "-1"
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress1 = {
@@ -151,12 +151,21 @@ nsg = {
   name = "testnsg01"
 }
 nsg_rules_public = {
-  outbound1 = {
+  outbound80 = {
     priority                   = 100
     direction                  = "Outbound"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  outbound443 = {
+    priority                   = 100
+    direction                  = "Outbound"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -169,23 +178,23 @@ nsg_rules_public = {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-  # inbound2 = {
-  #   priority                   = 102
-  #   direction                  = "Inbound"
-  #   protocol                   = "Tcp"
-  #   source_port_range          = "*"
-  #   destination_port_range     = "*"
-  #   source_address_prefix      = "66.169.181.135"
-  #   destination_address_prefix = "*"
-  # }
 }
 nsg_rules_private = {
-  outbound1 = {
+  outbound80 = {
     priority                   = 100
     direction                  = "Outbound"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  outbound443 = {
+    priority                   = 100
+    direction                  = "Outbound"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
