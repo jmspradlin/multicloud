@@ -162,15 +162,15 @@ nsg_rules_public = {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-  inbound2 = {
-    priority                   = 102
-    direction                  = "Inbound"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "66.169.181.135"
-    destination_address_prefix = "*"
-  }
+  # inbound2 = {
+  #   priority                   = 102
+  #   direction                  = "Inbound"
+  #   protocol                   = "Tcp"
+  #   source_port_range          = "*"
+  #   destination_port_range     = "*"
+  #   source_address_prefix      = "66.169.181.135"
+  #   destination_address_prefix = "*"
+  # }
 }
 nsg_rules_private = {
   outbound1 = {
