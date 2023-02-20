@@ -67,7 +67,7 @@ module "aws_instance01" {
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
-echo '<html><head><style>h1 {text-align:center;} body {background-color:${each.value.color};}</style></head><body><h1>Hello ACME Corp on ${each.key}.</h1><br><br><h1>Powered by</h1><br><center><img src="${each.value.logo}"></center></body></html>' > /var/www/html/index.html
+echo '<html><head><style>h1 {text-align:center;} img { max-width: 150px; } body {background-color:${each.value.color};}</style></head><body><h1>Hello ACME Corp on ${each.key}.</h1><br><br><h1>Powered by</h1><br><center><img src="${each.value.logo}"></center></body></html>' > /var/www/html/index.html
 systemctl restart httpd
   EOF
 }
