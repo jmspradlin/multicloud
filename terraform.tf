@@ -3,7 +3,7 @@ terraform {
     organization = "loudtree"
 
     workspaces {
-      name = "azure-demo"
+      name = "multicloud"
     }
   }
 
