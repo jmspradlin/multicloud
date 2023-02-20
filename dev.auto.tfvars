@@ -1,4 +1,5 @@
 # General resources
+env = "dev"
 tags = {
   environment = "Dev"
   source      = "Terraform"
@@ -101,12 +102,6 @@ subnets = {
   frontend = {
     address_prefixes = ["10.0.2.0/27"]
   },
-  # frontend2 = {
-  #   address_prefixes = ["10.0.2.32/27"]
-  # },
-  # frontend3 = {
-  #   address_prefixes = ["10.0.2.64/27"]
-  # },
   zone1 = {
     address_prefixes = ["10.0.3.0/27"]
   },

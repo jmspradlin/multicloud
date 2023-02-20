@@ -21,7 +21,6 @@ resource "azurerm_subnet" "subnets" {
   resource_group_name  = azurerm_resource_group.rg01.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = each.value.address_prefixes
-  tags                 = var.tags
 }
 
 # Security Groups and Rules
@@ -47,11 +46,9 @@ resource "azurerm_network_security_rule" "public" {
   protocol                    = each.value.protocol
   source_port_range           = each.value.source_port_range
   destination_port_range      = each.value.destination_port_range
-  source_address_prefix       = each.value.source_address_prefix
   destination_address_prefix  = each.value.destination_address_prefix
   resource_group_name         = azurerm_resource_group.rg01.name
   network_security_group_name = azurerm_network_security_group.public.name
-  tags                        = var.tags
 }
 resource "azurerm_network_security_rule" "private" {
   for_each = var.nsg_rules_private
@@ -67,7 +64,6 @@ resource "azurerm_network_security_rule" "private" {
   destination_address_prefix  = each.value.destination_address_prefix
   resource_group_name         = azurerm_resource_group.rg01.name
   network_security_group_name = azurerm_network_security_group.private.name
-  tags                        = var.tags
 }
 
 # Public IP
@@ -101,7 +97,6 @@ resource "azurerm_lb_probe" "public_lb" {
   loadbalancer_id = azurerm_lb.public_lb.id
   name            = "http-probe"
   port            = 80
-  tags            = var.tags
 }
 # Load balancing rule
 resource "azurerm_lb_rule" "public_lb" {
@@ -119,7 +114,6 @@ resource "azurerm_lb_rule" "public_lb" {
 resource "azurerm_lb_backend_address_pool" "public_lb" {
   loadbalancer_id = azurerm_lb.public_lb.id
   name            = var.azure_load_balancer.backend_pool_name
-  tags            = var.tags
 }
 resource "azurerm_network_interface_backend_address_pool_association" "backend" {
   for_each                = module.azure_linux_servers
