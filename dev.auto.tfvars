@@ -71,10 +71,17 @@ aws_public_rules = {
 }
 
 aws_private_rules = {
-  ingress1 = {
+  ingress80 = {
     type        = "ingress"
-    from_port   = 0
-    to_port     = 0
+    from_port   = 80
+    to_port     = 80
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress443 = {
+    type        = "ingress"
+    from_port   = 443
+    to_port     = 443
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
