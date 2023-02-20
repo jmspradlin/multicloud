@@ -2,6 +2,7 @@ variable "tags" {}
 variable "env" {}
 
 # AWS Resources
+variable "aws_region" {}
 variable "vpc" {}
 variable "instance" {}
 variable "aws_load_balancer" {}
