@@ -34,7 +34,6 @@ resource "aws_security_group_rule" "public" {
   security_group_id = aws_security_group.sg["public"].id
   cidr_blocks       = each.value.cidr_blocks
   ipv6_cidr_blocks  = each.value.type == "egress" ? each.value.ipv6_cidr_blocks : null
-  tags              = var.tags
 }
 
 resource "aws_security_group_rule" "private" {
@@ -47,7 +46,6 @@ resource "aws_security_group_rule" "private" {
   security_group_id = aws_security_group.sg["private"].id
   cidr_blocks       = each.value.cidr_blocks
   ipv6_cidr_blocks  = each.value.type == "egress" ? each.value.ipv6_cidr_blocks : null
-  tags              = var.tags
 }
 
 module "aws_instance01" {

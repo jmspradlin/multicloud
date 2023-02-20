@@ -108,7 +108,6 @@ resource "azurerm_lb_rule" "public_lb" {
   frontend_ip_configuration_name = "PublicIP"
   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.public_lb.id]
   probe_id                       = azurerm_lb_probe.public_lb.id
-  tags                           = var.tags
 }
 # Backend Pool and Association
 resource "azurerm_lb_backend_address_pool" "public_lb" {
@@ -120,7 +119,6 @@ resource "azurerm_network_interface_backend_address_pool_association" "backend" 
   network_interface_id    = each.value.network_interface_ids[0]
   ip_configuration_name   = "${each.key}-ip-0"
   backend_address_pool_id = azurerm_lb_backend_address_pool.public_lb.id
-  tags                    = var.tags
 }
 
 # Compute
