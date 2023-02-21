@@ -60,6 +60,16 @@ module "aws_instance01" {
   subnet_id              = module.vpc.private_subnets[each.value.subnet_id]
   vpc_security_group_ids = [aws_security_group.sg["private"].id]
   tags                   = var.tags
+  depends_on             = [
+    aws_security_group.sg["private"],
+    aws_security_group.sg["public"],
+    aws_security_group_rule.public["ingress1"],
+    aws_security_group_rule.public["egress1"],
+    aws_security_group_rule.private["ingress80"],
+    aws_security_group_rule.private["ingress443"],
+    aws_security_group_rule.private["egress1"]
+
+  ]
   user_data              = <<-EOF
 #!/bin/bash
 # Use this for your user data (script from top to bottom)
