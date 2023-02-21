@@ -161,7 +161,7 @@ nsg_rules_public = {
     destination_address_prefix = "*"
   }
   outbound443 = {
-    priority                   = 100
+    priority                   = 101
     direction                  = "Outbound"
     protocol                   = "Tcp"
     source_port_range          = "*"
@@ -170,7 +170,7 @@ nsg_rules_public = {
     destination_address_prefix = "*"
   }
   inbound1 = {
-    priority                   = 101
+    priority                   = 102
     direction                  = "Inbound"
     protocol                   = "Tcp"
     source_port_range          = "*"
@@ -190,7 +190,7 @@ nsg_rules_private = {
     destination_address_prefix = "*"
   }
   outbound443 = {
-    priority                   = 100
+    priority                   = 101
     direction                  = "Outbound"
     protocol                   = "Tcp"
     source_port_range          = "*"
@@ -199,7 +199,7 @@ nsg_rules_private = {
     destination_address_prefix = "*"
   }
   inbound = {
-    priority                   = 101
+    priority                   = 102
     direction                  = "Inbound"
     protocol                   = "Tcp"
     source_port_range          = "*"

@@ -9,11 +9,6 @@ This lab uses flat folder structure and DRY Terraform code, with AWS and Azure r
 
 The websites deployed use VM Images, built with Packer (not included in this code) as well as custom user-data deployments (for EC2).
 
-In the interest of time and to prevent race conditions, the following configurations are in place which do not adhere to be practices:
-### AWS EC2 instances are located in public subnets
-- While private subnets are provided, inconsistent behavior was observed in testing that required the movement to public subnets due to time constraints.
-- Additionally, the custom configuration on these instance is realized through post-deployment configuration (user-data) in the interest of time.
-
 # Running this demo
 To use this lab, you will need to perform the following steps:
 1. Fork this repo and add to your Terraform Cloud as a VCS provider.
