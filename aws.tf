@@ -57,8 +57,8 @@ module "aws_instance01" {
   ami                    = each.value.ami
   instance_type          = each.value.type
   monitoring             = true
-  subnet_id              = module.vpc.public_subnets[each.value.subnet_id]
-  vpc_security_group_ids = [aws_security_group.sg["public"].id]
+  subnet_id              = module.vpc.private_subnets[each.value.subnet_id]
+  vpc_security_group_ids = [aws_security_group.sg["private"].id]
   tags                   = var.tags
   user_data              = <<-EOF
 #!/bin/bash
