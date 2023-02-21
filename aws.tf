@@ -61,6 +61,7 @@ module "aws_instance01" {
   vpc_security_group_ids = [aws_security_group.sg["private"].id]
   tags                   = var.tags
   depends_on             = [
+    module.vpc,
     aws_security_group.sg["private"],
     aws_security_group.sg["public"],
     aws_security_group_rule.public["ingress1"],
