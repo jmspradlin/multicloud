@@ -61,7 +61,7 @@ module "aws_instance01" {
   vpc_security_group_ids = [aws_security_group.sg["private"].id]
   tags                   = var.tags
   depends_on             = [
-    module.vpc
+    # module.vpc
     # aws_security_group.sg["private"],
     # aws_security_group.sg["public"],
     # aws_security_group_rule.public["ingress1"],
@@ -73,11 +73,7 @@ module "aws_instance01" {
   ]
   user_data              = <<-EOF
 #!/bin/bash
-# Use this for your user data (script from top to bottom)
-# install httpd (Linux 2 version)
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
+# update index.html
 echo '<html><head><style>h1 {text-align:center;} img { max-width: 150px; } body {background-color:${each.value.color};}</style></head><body><h1>Hello ACME Corp on ${each.key}.</h1><br><br><h1>Powered by</h1><br><center><img src="${each.value.logo}"></center></body></html>' > /var/www/html/index.html
 systemctl restart httpd
   EOF

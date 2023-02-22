@@ -14,7 +14,7 @@ vpc = {
 }
 instance = {
   aws1 = {
-    ami       = "ami-0cc87e5027adcdca8"
+    ami       = "ami-04fe203d35975aaa8" #"ami-0cc87e5027adcdca8"
     type      = "t2.large"
     key_name  = "testKey"
     subnet_id = "0"
@@ -22,7 +22,7 @@ instance = {
     logo      = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png"
   }
   aws2 = {
-    ami       = "ami-0cc87e5027adcdca8"
+    ami       = "ami-04fe203d35975aaa8" #"ami-0cc87e5027adcdca8"
     type      = "t2.large"
     key_name  = "testKey"
     subnet_id = "1"
@@ -30,7 +30,7 @@ instance = {
     logo      = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png"
   }
   aws3 = {
-    ami       = "ami-0cc87e5027adcdca8"
+    ami       = "ami-04fe203d35975aaa8" #"ami-0cc87e5027adcdca8"
     type      = "t2.large"
     key_name  = "testKey"
     subnet_id = "2"
