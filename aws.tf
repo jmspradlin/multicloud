@@ -61,19 +61,14 @@ module "aws_instance01" {
   vpc_security_group_ids = [aws_security_group.sg["private"].id]
   tags                   = var.tags
   depends_on             = [
-    # module.vpc
-    # aws_security_group.sg["private"],
-    # aws_security_group.sg["public"],
-    # aws_security_group_rule.public["ingress1"],
-    # aws_security_group_rule.public["egress1"],
-    # aws_security_group_rule.private["ingress80"],
-    # aws_security_group_rule.private["ingress443"],
-    # aws_security_group_rule.private["egress1"]
-
+    module.vpc
   ]
   user_data              = <<-EOF
 #!/bin/bash
-# update index.html
+# install httpd (Linux 2 version)
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
 echo '<html><head><style>h1 {text-align:center;} img { max-width: 150px; } body {background-color:${each.value.color};}</style></head><body><h1>Hello ACME Corp on ${each.key}.</h1><br><br><h1>Powered by</h1><br><center><img src="${each.value.logo}"></center></body></html>' > /var/www/html/index.html
 systemctl restart httpd
   EOF
