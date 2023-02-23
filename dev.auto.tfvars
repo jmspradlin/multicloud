@@ -6,6 +6,7 @@ tags = {
   source      = "Terraform"
   department  = "Infrastructure"
   costCenter  = "IT"
+  kickoff     = "false"
 }
 # AWS resources
 vpc = {
